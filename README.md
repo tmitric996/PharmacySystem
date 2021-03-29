@@ -1,4 +1,4 @@
-# ISA20-21
+# link to original repo https://github.com/mvisekruna/ISA20-21
 
 # Pharmacy system
 
