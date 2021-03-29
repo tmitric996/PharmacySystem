@@ -1,0 +1,59 @@
+<div>
+    <div>
+        <h2>Write complaint for: </h2>
+        <button type="submit" (click)="forPharmacy()"
+          class="btn btn-info">Pharmacy</button>      &nbsp;
+
+          <button type="submit" (click)="forPharmacist()"
+          class="btn btn-info">Pharmacist</button>      &nbsp;
+
+          <button type="submit" (click)="forDermatologist()"
+          class="btn btn-info">Dermatologist</button> <br/>
+          &nbsp;
+    </div>
+    <div *ngIf="isPharmacy">
+        <input list="myPharmacys" [disabled]="myPharmacys==null"  [(ngModel)]="pharmacy"
+      class="form-control" 
+      id="pharmacy" 
+      name="pharmacy"  ><br/><br />
+
+      <datalist id="myPharmacys">
+        <option *ngFor="let pharm of myPharmacys" id="myPharmacys" value={{pharm.id}}>{{pharm.id}} {{pharm.name}}
+        </option>
+    </datalist>
+    <textarea [disabled]="myPharmacys==null" cols="65" rows="6" [(ngModel)]="poruka" id="poruka" name="poruka"></textarea><br/><br />
+    <button [disabled]="myPharmacys==null || pharmacy==null" type="submit" (click)="submitComplaintPharmacy()"  
+              class="btn btn-info" >Submit complaint</button>
+    </div>
+    <div *ngIf="isPharmacist">
+        <input list="myPharmacists"  [(ngModel)]="pharmacist"
+        [disabled]="myPharmacists==null"
+      class="form-control" 
+      id="pharmacist" 
+      name="pharmacist"  > <br/><br />
+
+      <datalist id="myPharmacists" >
+        <option *ngFor="let phar of myPharmacists" id="myPharmacists" value={{phar.id}}>{{phar.firstName}} {{phar.lastName}}
+        </option>
+    </datalist>
+    <textarea [disabled]="myPharmacists==null"  cols="65" rows="6" [(ngModel)]="poruka" id="poruka1" name="poruka1"></textarea><br/><br />
+    
+    <button type="submit" [disabled]="myPharmacists==null || pharmacist==null "  (click)="submitComplaintP()"  
+              class="btn btn-info" >Submit complaint</button>
+    </div>
+    <div *ngIf="isDermatologist">
+        <input list="myDermatologists" [disabled]="myDermatologists==null" [(ngModel)]="dermatologist"
+        class="form-control" 
+        id="dermatologist" 
+        name="dermatologist"  > <br/><br />
+  
+        <datalist id="myDermatologists">
+          <option *ngFor="let derm of myDermatologists" id="myDermatologists" value={{derm.id}}>{{derm.firstName}} {{derm.lastName}}
+          </option>
+      </datalist>
+      <textarea [disabled]="myDermatologists==null" cols="65" rows="6" [(ngModel)]="poruka" id="poruka2" name="poruka2"></textarea><br/><br />
+      <button [disabled]="myDermatologists==null || dermatologist==null" type="submit" (click)="submitComplaintD()"  
+                class="btn btn-info" >Submit complaint</button>
+    </div>
+    
+</div>

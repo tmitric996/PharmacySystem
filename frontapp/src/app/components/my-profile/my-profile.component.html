@@ -1,0 +1,134 @@
+<div class="row">  
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-left text-white py-3">{{ title }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="!changeInfo && !changePass" id="changeInfo">
+      <p>
+        <strong>Email:</strong> {{userInfo.email}}<br/>
+        <strong>Name:</strong> {{userInfo.firstName}}<br/>
+        <strong>Surname:</strong> {{userInfo.lastName}}<br/>
+        <strong>My address:</strong> {{userInfo.address}}<br/>
+        <strong>City:</strong> {{userInfo.city}}<br/>
+        <strong>State:</strong> {{userInfo.state}}<br/>
+        <strong>Phone number:</strong> {{userInfo.phone}}<br/>
+      </p>
+      <!-- dodati prikaz liste alergija za tog korisnika -->
+      <div class="card my-5" *ngIf="isDr">
+        <div class="card-body">
+           <h3>Working schedule</h3> 
+        </div>
+      </div>
+      <div class="card my-5" *ngIf="isPatient">
+        <div class="card-body">
+          <h2>{{ titleAllergie }}</h2>
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Medicine</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let allergie of allergiesList" id="allergie">
+                <td>{{ allergie.medicineName }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button (click)="changeInfoFun()" type="submit"  
+      class="btn btn-info">Update my profile</button>
+      &nbsp;
+      <button (click)="changePassFun()" type="submit"  
+      class="btn btn-info">Change my password</button><br/><br/>
+      <button *ngIf="isPatient" (click)="addAllergies()" type="submit"  
+      class="btn btn-info">Add new allergie</button>
+    </div>
+    <div class="form-group" *ngIf="changeInfo" id="changeInfo">
+      <p>
+        <strong>Name:</strong><input type="text"   
+        class="form-control" 
+        id="name" 
+        name="name" 
+        placeholder= {{userInfo.firstName}}
+        value={{userInfo.firstName}}
+        > <br/>
+        <strong>Surname:</strong> <input type="text" 
+        class="form-control" 
+        id="surname" 
+        name="surname" 
+        placeholder= {{userInfo.lastName}}
+        value={{userInfo.lastName}}
+        > <br/>
+        <strong>My address:</strong><input type="text" 
+        class="form-control" 
+        id="address" 
+        name="address" 
+        placeholder= {{userInfo.address}}
+        value={{userInfo.address}}
+        > <br/>
+        <strong>City:</strong><input type="text"  
+        class="form-control" 
+        id="city" 
+        name="city" 
+        placeholder= {{userInfo.city}}
+        value= {{userInfo.city}}
+        > <br/>
+        <strong>State:</strong><input type="text"  
+        class="form-control" 
+        id="state" 
+        name="state" 
+        placeholder= {{userInfo.state}}
+        value = {{userInfo.state}}
+        > <br/>
+        <strong>Phone number:</strong><input type="text" 
+        class="form-control" 
+        id="phone" 
+        name="phone" 
+        placeholder= {{userInfo.phone}}
+        value={{userInfo.phone}}
+        > <br/>
+      </p>
+      <button (click)="saveChangeFun()" type="submit"  
+      class="btn btn-info">Save changes</button>
+      &nbsp;
+      <button (click)="cancelFun()" type="submit"  
+      class="btn btn-info">Cancel</button>
+    </div>
+    <div class="form-group" *ngIf="changePass" id="changePass">
+      <p>
+        <strong>Old password:</strong><input type="password"   
+        class="form-control" 
+        id="oldpass" 
+        name="oldpass" 
+        > <br/>
+        <strong>New password:</strong> <input type="password" 
+        class="form-control" 
+        id="newpass" 
+        name="newpass" 
+        > <br/>
+      </p>
+      <button (click)="saveChangePassFun()" type="submit"  
+      class="btn btn-info">Save changes</button>
+      &nbsp;
+      <button (click)="cancelPassFun()" type="submit"  
+      class="btn btn-info">Cancel</button>
+    </div>
+    <div class="form-group" *ngIf="allergies" id="allergies">
+      <p>
+        <strong>Medicine:</strong><input type="text"   
+        class="form-control" 
+        id="medicine" 
+        name="medicine" 
+        > <br/>
+      </p>
+      <button (click)="saveAllergiesFun()" type="submit"  
+      class="btn btn-info">Save changes</button>
+      &nbsp;
+      <button (click)="cancelPassFun()" type="submit"  
+      class="btn btn-info">Cancel</button>
+    </div>
+  </div>

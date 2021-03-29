@@ -1,0 +1,32 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2 class="card-title text-center text-white py-3">My reserved medicines</h2>
+    <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Medicine</th>
+        <th scope="col">Pharmacy</th>
+        <th scope="col">Date</th>
+        <th scope="col">Cancel reservation</th>
+        <th scope="col">Take over</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let crr of canCancelReservation" id="canCancelReservation">
+        <td>{{ crr.mr.id }}</td>
+        <td>{{ crr.mr.medicine.name }}</td>
+        <td>{{ crr.mr.pharmacy.name }}</td>
+        <td>{{ crr.mr.dateAndTime | date:'medium' }}</td>
+        <td><button type="submit" (click)="cancelReservation(crr.mr.id)"  
+          class="btn btn-info" [disabled]="!crr.canCancel"
+          style="width:100%">Cancel</button></td>
+        <td><button type="submit" (click)="takeit(crr.mr.id)"  
+          class="btn btn-info" 
+          style="width:100%">Take it</button></td>
+      </tr>
+    </tbody>
+    </table>   
+    </div>
+</div>

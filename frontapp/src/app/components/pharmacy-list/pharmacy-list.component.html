@@ -1,0 +1,72 @@
+  
+<div class="card my-5">
+    <div class="card-body" *ngIf="!showPharm" id="!showPharm">
+      <h2>{{ title }}</h2>
+     <!-- <input type="text" [(ngModel)]="terms" placeholder="Serach fields by name/address"/> -->
+
+      <table class="table table-striped table-bordered table-sm row-border hover"  datatable [dtOptions]="dtOptions" >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+              Name
+              </th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pharmacy of pharmacys | search:terms" id="pharmacy">
+            <td>{{ pharmacy.id }}</td>
+            <td><button type="submit" (click)="showPharmacy(pharmacy.name)"  
+              class="btn btn-info"  style="width:100%">{{ pharmacy.name }}</button></td> 
+              <!-- dodati da na klik ide na prfil apoteke-->
+            <td>{{ pharmacy.phone }}</td>
+            <td>{{ pharmacy.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card my-5" *ngIf="showPharm" id="showPharm">
+      <div class="card-body">
+        <h2>{{ title }}</h2>
+      </div>
+      <p>
+        <strong>Address: {{ pharmacy1.address }}</strong><br/>
+        <strong>Phone: {{ pharmacy1.phone }}</strong><br/>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Dermatologist</th>
+              <th scope="col">Date</th>
+              <th scope="col">Schedule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let exam of examinations" id="examinations">
+              <td>{{ exam.id }}</td>
+              <td>{{ exam.dermatologist.firstName }}</td>
+              <td>{{ exam.dateAndTime | date:'medium'}}</td>
+              <td><button type="submit" (click)="scheduleExamination(exam.id)"  
+                class="btn btn-info"  style="width:100%">schedule</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="isAdmin">
+            <input list="freeAdmins"  [(ngModel)]="pharmAdmin.email"
+      class="form-control" 
+      id="pharmAdmin.email" 
+      name="pharmAdmin.email"  >
+
+      <datalist id="freeAdmins">
+        <option *ngFor="let freeA of freeAdmins" id="freeAdmins">{{freeA.email}}
+        </option>
+    </datalist>
+    <button type="submit" (click)="makeAdmin()"  
+              class="btn btn-info" >Add admin to pharmacy</button>
+        </div>
+        <button type="submit" (click)="backFun()"  
+              class="btn btn-info" >Back to list</button>
+    </div>
+  </div>

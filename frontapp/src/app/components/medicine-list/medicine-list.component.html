@@ -1,0 +1,44 @@
+  
+<div class="card my-5">
+    <div class="card-body">
+      <h2>{{ title }}</h2>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medicine of medicines" id="medicine">
+            <td>{{ medicine.id }}</td>
+            <td><button type="submit" title={{buttonTitle}} (click)="showPharmacyThatHave(medicine.id)"  
+              class="btn btn-info" [disabled]="!isLogedIn" style="width:100%">{{ medicine.name }}</button></td>
+            <td>{{ medicine.type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="showP">
+      <input type="datetime-local" id="TestDateString" [ngModel]="TestDateString | date:'yyyy-MM-ddTHH:mm'" />
+
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Make reservation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pharmacy of pharmacys" id="pharmacy">
+            <td>{{ pharmacy.id }}</td>
+            <td>{{ pharmacy.name }}</td>
+            <td><button type="submit" (click)="makeReservation(pharmacy.id)"  
+              class="btn btn-info" [disabled]="!isLogedIn" style="width:100%">Reserve</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

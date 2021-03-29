@@ -1,0 +1,125 @@
+<div class="card my-5">
+    <div class="card-body" *ngIf="!scheduleClicked && isDerm">
+    <h2 class="card-title text-center ">My schedule</h2>
+    <table class="table table-bordered table-striped" *ngIf="isDerm">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Patient</th>
+        <th scope="col">Examination</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of examinatons" id="examinatons">
+        <td>{{ exam.id }}</td>
+        <td>{{exam.dateAndTime}}></td>
+        <td *ngIf="exam.patient!=null ">{{ exam.patient.firstName }} {{exam.patient.lastName}}</td>
+        <td *ngIf="exam.patient==null "> </td>
+
+        <td *ngIf="exam.patient!=null "><button type="submit" (click)="openExam(exam.id)"  
+            class="btn btn-info"
+            style="width:100%">Open</button></td>
+        <td *ngIf="exam.patient==null "><button type="submit" (click)="scheduleExam(exam.id)"  
+          class="btn btn-info"
+          style="width:100%">Schedule</button></td>
+      </tr>
+    </tbody>
+    </table>   
+    </div>
+    <div *ngIf="showExam && !isExam">
+        <button type="submit" (click)="startExam()"  
+        class="btn btn-info">Start examination</button><br/>
+        <br/>
+        <button type="submit" (click)="cancelExam()"  
+        class="btn btn-info">Patient didn't show up</button>
+
+    </div>
+    <div *ngIf="isExam"> 
+      <textarea  cols="65" rows="6" [(ngModel)]="report" id="poruka1" name="poruka1"></textarea><br/><br />
+      <h2>Make prescriptions</h2>
+      <table class="table table-striped table-bordered table-sm row-border hover"  datatable [dtOptions]="dtOptions" >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Prescribe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medicine of medicines" id="medicine">
+            <td>{{ medicine.id }}</td>
+            <td>{{ medicine.name }}</td>
+            <td>{{ medicine.type }}</td>
+            <td><button type="submit" class="btn btn-info" (click)="tryPrescribe(medicine.id)"
+               style="width:100%">Prescribt</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-info" (click)="finishExam()"
+    >Finish examination</button>
+    </div>
+
+    <div class="card-body" *ngIf="isPharm">
+      <h2 class="card-title text-center ">My schedule</h2>
+    <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Patient</th>
+        <th scope="col">Counseling</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coun of counselings" id="counselings">
+        <td>{{ coun.id }}</td>
+        <td>{{coun.dateAndTime | date:'medium' }}></td>
+        <td *ngIf="coun.patient!=null ">{{ coun.patient.firstName }} {{coun.patient.lastName}}</td>
+        <td *ngIf="coun.patient==null "> </td>
+
+        <td *ngIf="coun.patient==null "><button type="submit" (click)="scheduleCoun(coun.id)"  
+          class="btn btn-info"
+          style="width:100%">Schedule</button></td>
+        <td *ngIf="coun.patient!=null "><button type="submit" (click)="openCoun(coun.id)"  
+            class="btn btn-info"
+            style="width:100%">Open</button></td>
+      </tr>
+    </tbody>
+    </table> 
+    <div *ngIf="showCoun  && !isCoun">
+      <button type="submit" (click)="startCoun()"  
+      class="btn btn-info">Start counseling</button><br/>
+      <br/>
+      <button type="submit" (click)="cancelExam()"  
+      class="btn btn-info">Patient didn't show up</button>
+
+  </div>  
+  <div *ngIf="isCoun"> 
+    <textarea  cols="65" rows="6" [(ngModel)]="report" id="poruka" name="poruka"></textarea><br/><br />
+    <h2>Make prescriptions</h2>
+    <table class="table table-striped table-bordered table-sm row-border hover"  datatable [dtOptions]="dtOptions" >
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Prescribe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicine of medicines" id="medicine">
+          <td>{{ medicine.id }}</td>
+          <td>{{ medicine.name }}</td>
+          <td>{{ medicine.type }}</td>
+          <td><button type="submit" class="btn btn-info" (click)="tryPrescribe(medicine.id)"
+             style="width:100%">Prescribt</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-info" (click)="finishCoun()"
+  >Finish counseling</button>
+  </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2 class="card-title text-center text-white py-3">My counselings</h2>
+    <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pharmacist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Cancel counseling</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ccc of canCancelCounseling" id="canCancelCounseling">
+        <td>{{ ccc.counseling.id }}</td>
+        <td>{{ ccc.counseling.pharmacist.firstName }}</td>
+        <td>{{ ccc.counseling.dateAndTime | date:'medium' }}</td>
+        <td><button type="submit" (click)="cancelCounseling(ccc.counseling.id)"  
+          class="btn btn-info" [disabled]="!ccc.canCancel"
+          style="width:100%">Cancel</button></td>
+      </tr>
+    </tbody>
+    </table>   
+    </div>
+</div>

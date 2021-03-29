@@ -1,0 +1,44 @@
+<div class="card my-5">
+    <div class="card-body" >
+      <h2>{{ title }}</h2>
+      <input type="datetime-local" id="TestDateString" [ngModel]="TestDateString | date:'yyyy-MM-ddTHH:mm'" />
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Price for counseling</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pharmacy of pharmacys" id="pharmacy">
+            <td>{{ pharmacy.id }}</td>
+            <td><button type="submit" (click)="showPharmacyWithPharmacists(pharmacy.name)"  
+                class="btn btn-info"  style="width:100%">{{ pharmacy.name }}</button></td> 
+            <td>{{ pharmacy.address }}</td>
+            <td>{{ pharmacy.priceForCounseling }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="showPharm" id="showPharm">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pharmacist of pharmacists" id="pharmacists">
+                <td>{{ pharmacist.id }}</td>
+                <td><button type="submit" (click)="scheduleCounseling(pharmacist)"  
+                    class="btn btn-info"  style="width:100%">{{ pharmacist.firstName }}</button></td>
+                <td>{{ pharmacist.lastName }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+</div>

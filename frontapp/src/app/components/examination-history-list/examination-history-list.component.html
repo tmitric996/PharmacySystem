@@ -1,0 +1,23 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2 class="card-title text-center text-white py-3">History of my examinations</h2>
+    <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Dermatologist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of examinations" id="examinations">
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.dermatologist.firstName }}</td>
+        <td>{{ exam.dateAndTime | date:'medium' }}</td>
+        <td>{{ exam.price }}</td>
+      </tr>
+    </tbody>
+    </table>   
+    </div>
+</div>

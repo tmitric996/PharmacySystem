@@ -1,0 +1,23 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2 class="card-title text-center text-white py-3">History of my counselings</h2>
+    <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pharmacist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coun of counselings" id="counselings">
+        <td>{{ coun.id }}</td>
+        <td>{{ coun.pharmacist.firstName }}</td>
+        <td>{{ coun.dateAndTime | date:'medium' }}</td>
+        <td>{{ coun.pharmacy.priceForCounseling }}</td>
+      </tr>
+    </tbody>
+    </table>   
+    </div>
+</div>

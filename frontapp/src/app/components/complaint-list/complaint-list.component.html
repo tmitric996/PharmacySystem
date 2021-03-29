@@ -1,0 +1,38 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2>Complaint list</h2>
+        <table>
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Who send it</th>
+                  <th scope="col">To whom</th>
+                  <th scope="col">Answer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let comp of complaints" id="complaints">
+                    <td>{{comp.id}}</td>
+                    <td>{{comp.patient.email}}</td>
+                    <td *ngIf="comp.pharmacy!=null">{{comp.pharmacy.name}}</td>
+                    <td *ngIf="comp.staff!=null">{{comp.staff.firstName}} {{comp.staff.lastName}}</td>
+                    <td><button type="submit" (click)="answerRequest(comp.id)"  
+                        class="btn btn-info"  style="width:100%"  [disabled]="comp.answered">Answer</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="showComplaint" id="showCoplaint">
+            <h3>Complaint #{{complaint.id}}</h3><br />
+            <p>
+                <strong>Who sent it: {{complaint.patient.email}}</strong><br/>
+                <strong *ngIf="complaint.pharmacy!=null">To whom refers to: {{complaint.pharmacy.name}}</strong> <br />
+                <strong *ngIf="complaint.staff!=null">To whom refers to: {{complaint.staff.firstName}} {{complaint.staff.lastName}}</strong><br />
+                Message: <br />
+                {{complaint.message}}<br />
+            </p>
+            <textarea cols="65" rows="6" [(ngModel)]="complaint.answer" id="poruka1" name="poruka1"></textarea>
+            <button type="submit" (click)="answer()"  
+            class="btn btn-info"  >Submit answer</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2>{{ title }}</h2>
+        <div >
+      <form (ngSubmit)="onSubmit()" #form="ngForm" name="createMedForm" #r="ngForm" novalidate>
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text"   [(ngModel)]="medicineReq.name"
+            class="form-control" 
+            id="name" 
+            name="name" 
+            placeholder="Enter medicine name"
+            >
+        </div>
+        <div class="form-group">
+          <label for="code">Code</label>
+          <input type="text"  [(ngModel)]="medicineReq.code"
+            class="form-control" 
+            id="code" 
+            name="code" 
+            placeholder="Enter code"
+            > 
+        </div>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text"  [(ngModel)]="medicineReq.type"
+              class="form-control" 
+              id="type" 
+              name="type" 
+              placeholder="Enter type"
+              >    
+          </div>
+          <div class="form-group">
+            <label for="contraindication">Contraindication</label>
+            <input type="text"  [(ngModel)]="medicineReq.contraindication"
+              class="form-control" 
+              id="contraindication" 
+              name="contraindication" 
+              placeholder="Enter contraindication"
+              >    
+          </div>
+          <div class="form-group">
+            <label for="components">Components</label>
+            <input type="text"  [(ngModel)]="medicineReq.components"
+              class="form-control" 
+              id="components" 
+              name="components" 
+              placeholder="Enter components"
+              >    
+          </div>
+          <div class="form-group">
+            <label for="dailyIntake">DailyIntake</label>
+            <input type="text"  [(ngModel)]="medicineReq.dailyIntake"
+              class="form-control" 
+              id="dailyIntake" 
+              name="dailyIntake" 
+              placeholder="Enter dailyIntake"
+              >    
+          </div>
+          <div class="form-group">
+            <label for="replacments">Replacments</label>
+            <input type="text"  [(ngModel)]="medicineReq.replacments"
+              class="form-control" 
+              id="replacments" 
+              name="replacments" 
+              placeholder="Enter replacments"
+              >    
+          </div>
+          <div class="form-group">
+            <label for="prescriptioRequired">Is prescriptio required</label>
+            <input type="checkbox"  [(ngModel)]="medicineReq.prescriptioRequired"
+              class="form-control" 
+              id="prescriptioRequired" 
+              name="prescriptioRequired" 
+             
+              >    
+          </div>
+          <button type="submit" 
+          class="btn btn-info">Add</button>
+      </form>
+      </div>
+   </div>
+</div>
+          

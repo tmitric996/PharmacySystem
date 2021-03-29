@@ -1,0 +1,49 @@
+<div *ngIf="info.token; else loggedOut">
+  <div class="card my-5">
+    <div class="card-body">
+    <div *ngIf="isUser" id="isUser">
+      <app-home-page-patient></app-home-page-patient>
+    </div>
+    <div *ngIf="isSystemAdmin" id="isSystemAdmin">
+      <app-home-page-system-admin></app-home-page-system-admin>
+    </div>
+    <div *ngIf="isPharm" id="isPharm">
+      <app-home-page-pharmacist></app-home-page-pharmacist>
+    </div>
+    <div *ngIf="isDerm" id="isDerm">
+      <app-home-page-dermatologist></app-home-page-dermatologist>
+    </div>
+    <button class="btn btn-info" (click)="logout()">Logout</button>
+    </div>
+    </div>
+  </div>
+   
+  <ng-template #loggedOut>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card bg-dark my-5">
+            <div class="card-body">
+              <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+              <div>
+                <div style="float:left;width:49%;">
+                  <app-login-form></app-login-form>
+                </div>
+                <div style="float:right;width:49%;">
+                  <app-register-form></app-register-form>
+                </div>
+                <div style="clear:both; font-size:1px;"></div>
+              </div>
+              <div>
+                <app-pharmacy-list></app-pharmacy-list>
+              </div>
+              <div>
+                <app-medicine-list></app-medicine-list>
+              </div>
+            </div>
+          </div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </ng-template>

@@ -1,0 +1,26 @@
+<div class="card my-5">
+    <div class="card-body">
+        <h2 class="card-title text-center">My examinations</h2>
+    <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Dermatologist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Cancel examination</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cue of canUnscheduleExam" id="canUnscheduleExam">
+        <td>{{ cue.exam.id }}</td>
+        <td>{{ cue.exam.dermatologist.firstName }}</td>
+        <td>{{ cue.exam.dateAndTime | date:'medium'
+        }}</td>
+        <td><button type="submit" (click)="cancelExamination(cue.exam.id)"  
+          class="btn btn-info" [disabled]="!cue.canUnschedule"
+          style="width:100%">Cancel</button></td>
+      </tr>
+    </tbody>
+    </table>   
+    </div>
+</div>
